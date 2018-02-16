@@ -1,14 +1,10 @@
 # PythonProjects
 
-
 #Create virtual environment
-
 virtualenv -p python3 envname
 
 #Use virtual environment
-
-python3 -m venv envname -env
+source envname/bin/activate
 
 #Check Django Version
-
 django-admin.py version
