@@ -1,14 +1,14 @@
-#Http Test Project
+# Http Test Project
 
 
-#Create virtual environment
+###### Create virtual environment
 virtualenv -p python3 envname
 
-# Python 3
+###### Python 3
 python3 -m venv env
 
-#Use virtual environment
+###### Use virtual environment
 source envname/bin/activate
 
-#Check Django Version
+###### Check Django Version
 django-admin.py version
