@@ -37,3 +37,19 @@ def authverif():
     if "error" in res:
         return False
     return True
+
+
+def get_updates(last_activity_date=""):
+    '''
+    Returns all updates since the given activity date.
+    The last activity date is defaulted at the beginning of time.
+    Format for last_activity_date: "2017-07-09T10:28:13.392Z"
+    '''
+    try:
+        url = config.host + '/updates'
+        r = requests.post(url,
+                          headers=headers,
+                          data=json.dumps({"last_activity_date": last_activity_date}))
+        return r.json()
+    except requests.exceptions.RequestException as e:
+        print("Something went wrong with getting updates:", e)
