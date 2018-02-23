@@ -30,3 +30,10 @@ def get_auth_token(fb_auth_token, fb_user_id):
     except Exception as e:
         print(e)
     return {"error": "Something went wrong. Sorry, but we could not authorize you."}
+
+
+def authverif():
+    res = get_auth_token(config.fb_auth_token, config.fb_user_id)
+    if "error" in res:
+        return False
+    return True
