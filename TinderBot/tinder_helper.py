@@ -36,6 +36,6 @@ def get_blocks():
     return blocks
 
 
-def sleep():
+def wait_time():
     sleep_length = 5 * random()
     sleep(sleep_length)

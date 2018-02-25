@@ -53,3 +53,32 @@ def get_updates(last_activity_date=""):
         return r.json()
     except requests.exceptions.RequestException as e:
         print("Something went wrong with getting updates:", e)
+
+
+def get_recommendations():
+    try:
+        r = requests.get('https://api.gotinder.com/user/recs', headers=headers)
+        return r.json()
+    except requests.exceptions.RequestException as e:
+        print("Something went wrong with getting recomendations:", e)
+
+
+def get_person(id):
+    '''
+    Gets a user's profile via their id
+    '''
+    try:
+        url = config.host + '/user/%s' % id
+        r = requests.get(url, headers=headers)
+        return r.json()
+    except requests.exceptions.RequestException as e:
+        print("Something went wrong. Could not get that person:", e)
+
+
+def like(person_id):
+    try:
+        url = config.host + '/like/%s' % person_id
+        r = requests.get(url, headers=headers)
+        return r.json()
+    except requests.exceptions.RequestException as e:
+        print("Something went wrong. Could not like:", e)
