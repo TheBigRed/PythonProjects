@@ -1,5 +1,5 @@
 from datetime import date, datetime
-from random import random
+import random
 from time import sleep
 
 import config
@@ -37,5 +37,5 @@ def get_blocks():
 
 
 def wait_time():
-    sleep_length = 5 * random()
+    sleep_length = random.randint(2, 8)
     sleep(sleep_length)
