@@ -29,3 +29,13 @@ def get_match_info():
             # continue
     print("All data stored in variable: match_info")
     return match_info
+
+
+def get_blocks():
+    blocks = api.get_updates()["blocks"]
+    return blocks
+
+
+def sleep():
+    sleep_length = 5 * random()
+    sleep(sleep_length)
