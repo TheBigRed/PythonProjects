@@ -11,16 +11,21 @@ def main():
     if tinder_api.authverif():
         while total_count < 400:
             recs = tinder_api.get_recommendations()
+            recs_length = len(recs['results'])
 
-            for i in range(0, len(recs['results'])):
-                tinder_id = recs['results'][i]['_id']
-                name = recs['results'][i]['name']
-                tinder_api.like(tinder_id)
-                print("liked " + name)
-                tinder_helper.wait_time()
-                total_count += 1
+            if recs_length != 0:
+                for i in range(0, len(recs['results'])):
+                    tinder_id = recs['results'][i]['_id']
+                    name = recs['results'][i]['name']
+                    tinder_api.like(tinder_id)
+                    print("liked " + name)
+                    tinder_helper.wait_time()
+                    total_count += 1
+            else:
+                print("Out of recommendations")
 
         print("liked a total of {} people".format(total_count))
+
     else:
         print("Authorization failed")
 
