@@ -9,6 +9,9 @@ def main():
     total_count = 0
 
     if tinder_api.authverif():
+        now_time = tinder_helper.get_time()
+        print("Starting bot at {}".format(now_time))
+
         while total_count < 400:
             recs = tinder_api.get_recommendations()
             recs_length = len(recs['results'])
@@ -25,6 +28,8 @@ def main():
                 print("Out of recommendations")
 
         print("liked a total of {} people".format(total_count))
+        finish_time = tinder_helper.get_time()
+        print("Bot ended at {}".format(finish_time))
 
     else:
         print("Authorization failed")

@@ -1,4 +1,4 @@
-from datetime import date, datetime
+import datetime
 import random
 from time import sleep
 
@@ -39,3 +39,9 @@ def get_blocks():
 def wait_time():
     sleep_length = random.randint(2, 8)
     sleep(sleep_length)
+
+
+def get_time():
+    now = datetime.datetime.time(datetime.datetime.now())
+    return now.replace(microsecond=0)
+
