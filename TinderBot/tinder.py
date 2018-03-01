@@ -1,8 +1,5 @@
-import sys
-import config
 import tinder_api
 import tinder_helper
-import json
 
 
 def main():
@@ -14,16 +11,22 @@ def main():
 
         while total_count < 400:
             recs = tinder_api.get_recommendations()
-            recs_length = len(recs['results'])
 
-            if recs_length != 0:
+            if 'results' in recs:
                 for i in range(0, len(recs['results'])):
                     tinder_id = recs['results'][i]['_id']
                     name = recs['results'][i]['name']
-                    tinder_api.like(tinder_id)
-                    print("liked " + name)
-                    tinder_helper.wait_time()
-                    total_count += 1
+
+                    if len(name) > 2:
+                        tinder_api.like(tinder_id)
+                        print("liked " + name)
+                        tinder_helper.wait_time()
+                        total_count += 1
+
+                    else:
+                        tinder_api.dislike(tinder_id)
+                        print("disliked " + name)
+
             else:
                 print("Out of recommendations")
 

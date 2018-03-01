@@ -82,3 +82,12 @@ def like(person_id):
         return r.json()
     except requests.exceptions.RequestException as e:
         print("Something went wrong. Could not like:", e)
+
+
+def dislike(person_id):
+    try:
+        url = config.host + '/pass/%s' % person_id
+        r = requests.get(url, headers=headers)
+        return r.json()
+    except requests.exceptions.RequestException as e:
+        print("Something went wrong. Could not dislike:", e)
