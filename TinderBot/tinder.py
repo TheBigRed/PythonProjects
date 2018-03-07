@@ -29,6 +29,7 @@ def main():
 
             else:
                 print("Out of recommendations")
+                tinder_helper.wait_time()
 
         print("liked a total of {} people".format(total_count))
         finish_time = tinder_helper.get_time()
