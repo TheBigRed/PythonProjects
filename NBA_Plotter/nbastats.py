@@ -7,7 +7,8 @@ import os
 def main():
     df = scrapeURL()
     df.head()
-    print(df)
+    #print(df)
+    df.to_csv('./data/sampledata.csv', header=df.columns.values, index=False)
 
 
 def scrapeURL():
@@ -59,11 +60,11 @@ def scrapeURL():
     headers = response.json()['resultSets'][0]['headers']
     stats = response.json()['resultSets'][0]['rowSet']
 
-    #print(json.dumps(stats, indent=4, sort_keys=True))
+    #print(json.dumps(response.json(), indent=4, sort_keys=True))
 
     stats_df = pandas.DataFrame(stats, columns=headers)
     stats_df['Season'] = parameters_playerstat['Season']
-    stats_df.drop(['CFID', 'CFPARAMS'], axis=1, inplace=True)
+    stats_df.drop(['AGE', 'TEAM_ID' , 'GP', 'W', 'L', 'W_PCT', 'PLAYER_ID', 'BLK_RANK',  'BLKA_RANK',  'PF_RANK', 'CFID', 'CFPARAMS'], axis=1, inplace=True)
     return stats_df
 
 
