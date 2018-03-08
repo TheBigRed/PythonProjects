@@ -10,7 +10,9 @@ def main():
 
     #df.to_csv('./data/sampledata_new.csv', header=df.columns.values, index=False)
 
+    fig, ax = plt.subplots()
     plt.scatter(df['GROUP_VALUE'], df['FG_PCT'] * 100)
+    ax.set_title("Shooting percentages active career")
     plt.show()
 
 
