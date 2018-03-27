@@ -62,7 +62,7 @@ def get_allplayers():
     return stats_df
 
 
-def get_player():
+def get_playerstats():
     base_url = 'https://stats.nba.com/stats/playerdashboardbyyearoveryear?' \
                'DateFrom=&' \
                'DateTo=&' \
@@ -93,8 +93,21 @@ def get_player():
     headers = response.json()['resultSets'][0]['headers']
     stats = response.json()['resultSets'][1]['rowSet']
 
-    #print(json.dumps(response.json(), indent=4, sort_keys=True))
+    print(json.dumps(response.json(), indent=4, sort_keys=True))
 
     stats_df = pandas.DataFrame(stats, columns=headers)
     df_new = stats_df[['GROUP_SET', 'GROUP_VALUE', 'TEAM_ID', 'MIN', 'FGM', 'FGA', 'FG3M', 'FG3A', 'FG_PCT']].copy()
     return df_new
+
+
+def get_playerisolation():
+    base_url = "https://stats-prod.nba.com/wp-json/statscms/v1/synergy/player/?category=Isolation&limit=500&names=offensive&q=2536882&season=2017&seasonType=Reg"
+    response = requests.get(base_url, headers=user_agent_headers)
+    response.raise_for_status()
+    headers = ['PlayerFirstName', 'PlayerLastName', 'TeamShortName', 'GP', 'Poss', 'Time', 'PPP', 'PPG', 'FGM', 'FGA', 'FG',
+               'aFG', 'FT', 'TO', 'SF', 'FGmG', 'Score']
+    stats = response.json()['results']
+    #print(json.dumps(stats, indent=4, sort_keys=True))
+
+    stats_df = pandas.DataFrame(stats, columns=headers)
+    return stats_df
